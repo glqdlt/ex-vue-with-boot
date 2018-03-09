@@ -3,6 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
+    <style>
+        .router-link-active {
+            color: red;
+        }
+    </style>
 </head>
 <body>
 <h2>
@@ -16,17 +21,35 @@
     </p>
     <router-view></router-view>
 </div>
-
-
+<!--https://daneden.github.io/animate.css/-->
+<template id="foo">
+    <p>{{message}}</p>
+</template>
 <script src="webjars/vue/2.5.13/dist/vue.min.js"></script>
 <script src="webjars/vue-router/2.5.3/dist/vue-router.min.js"></script>
 <script>
-    const Foo = {template : '<div>foo</div>'}
-    const Bar = {template : '<div>bar</div>'}
-
+    'use strict'
+    const Foo = Vue.extend({
+        template: '#foo',
+        data: function () {
+            return {
+                message: 'iam foo'
+            }
+        },
+        methods: function () {
+            return {
+                testMethod() {
+                    this.message = 'i am foo?';
+                }
+            }
+        }
+    })
+    const Bar = Vue.extend({
+        template: '<div>bar</div>'
+    })
     const routes = [
-        {path : '/foo', component : Foo},
-        {path : '/bar', component : Bar}
+        {path: '/foo', component: Foo},
+        {path: '/bar', component: Bar}
     ]
 
     const router = new VueRouter({
