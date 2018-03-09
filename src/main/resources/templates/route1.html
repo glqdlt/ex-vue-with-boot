@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<h2>
+    route1
+</h2>
+<div id="app">
+    <h2>Router</h2>
+    <p>
+        <router-link to="/foo">Go to Foo</router-link>
+        <router-link to="/bar">Go to Bar</router-link>
+    </p>
+    <router-view></router-view>
+</div>
+
+
+<script src="webjars/vue/2.5.13/dist/vue.min.js"></script>
+<script src="webjars/vue-router/2.5.3/dist/vue-router.min.js"></script>
+<script>
+    const Foo = {template : '<div>foo</div>'}
+    const Bar = {template : '<div>bar</div>'}
+
+    const routes = [
+        {path : '/foo', component : Foo},
+        {path : '/bar', component : Bar}
+    ]
+
+    const router = new VueRouter({
+        routes
+    })
+
+    const app = new Vue({
+        router
+    }).$mount('#app')
+</script>
+</body>
+</html>
